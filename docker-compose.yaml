@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  contacorrente-api:
+    build:
+      context: ./BancoAna_ContaCorrente
+      dockerfile: Dockerfile
+    ports:
+      - "5001:80"
+    volumes:
+      - sqlite_data_conta:/app/Data
+    networks:
+      - bankmore-network
+
+volumes:
+  sqlite_data_conta:
+
+networks:
+  bankmore-network:
+    driver: bridge
