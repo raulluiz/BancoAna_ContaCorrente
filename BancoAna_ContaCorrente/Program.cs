@@ -1,4 +1,7 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using Application.Services;
+using Domain.Interfaces;
+using Infrastructure.Repositories;
+using Microsoft.Data.Sqlite;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,17 +10,19 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<CriarContaService>();
+builder.Services.AddScoped<IContaCorrenteRepository, ContaCorrenteRepository>();
+
 var app = builder.Build();
 
 // Executa o script SQLite ao iniciar
 EnsureDatabaseCreated(app.Configuration);
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+
 
 app.UseHttpsRedirection();
 
