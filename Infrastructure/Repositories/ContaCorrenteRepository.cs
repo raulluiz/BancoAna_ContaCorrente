@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BancoAna_ContaCorrente.Domain.Entities;
+﻿using BancoAna_ContaCorrente.Domain.Entities;
 using Dapper;
 using Domain.Interfaces;
 using Microsoft.Data.Sqlite;

@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.DTOs;
+﻿using Application.DTOs;
 using BancoAna_ContaCorrente.Domain.Entities;
 using Domain.Interfaces;
 
 namespace Application.Services;
 
-public class CriarContaService
+public class CriarContaCorrenteService
 {
     private readonly IContaCorrenteRepository _repo;
 
-    public CriarContaService(IContaCorrenteRepository repo)
+    public CriarContaCorrenteService(IContaCorrenteRepository repo)
     {
         _repo = repo;
     }
 
-    public async Task<(CriarContaResponse? resposta, string? erroTipo, string? erroMensagem)> CriarAsync(CriarContaRequest request)
+    public async Task<(CriarContaResponse? resposta, string? erroTipo, string? erroMensagem)> CriarContaAsync(CriarContaCorrenteRequest request)
     {
         if (!CpfEhValido(request.CPF))
             return (null, "INVALID_DOCUMENT", "CPF inválido.");
@@ -29,15 +24,7 @@ public class CriarContaService
         var numeroConta = await _repo.GerarNumeroConta();
         var (hash, salt) = SenhaHasher.HashSenha(request.Senha);
 
-        var conta = new ContaCorrente
-        {
-            Numero = numeroConta,
-            Nome = request.Nome,
-            CPF = request.CPF,
-            SenhaHash = hash,
-            Salt = salt,
-            Ativo = true
-        };
+        var conta = new ContaCorrente(request.Nome, hash, salt, numeroConta, request.CPF);
 
         await _repo.AdicionarAsync(conta);
 

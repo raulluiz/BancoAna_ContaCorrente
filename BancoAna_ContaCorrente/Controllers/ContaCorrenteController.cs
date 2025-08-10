@@ -8,17 +8,17 @@ namespace API.Controllers;
 [Route("api/[controller]")]
 public class ContaCorrenteController : ControllerBase
 {
-    private readonly CriarContaService _service;
+    private readonly CriarContaCorrenteService _service;
 
-    public ContaCorrenteController(CriarContaService service)
+    public ContaCorrenteController(CriarContaCorrenteService service)
     {
         _service = service;
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] CriarContaRequest request)
+    public async Task<IActionResult> Post([FromBody] CriarContaCorrenteRequest request)
     {
-        var (resposta, tipoErro, msgErro) = await _service.CriarAsync(request);
+        var (resposta, tipoErro, msgErro) = await _service.CriarContaAsync(request);
 
         if (tipoErro is not null)
             return BadRequest(new { tipo = tipoErro, mensagem = msgErro });

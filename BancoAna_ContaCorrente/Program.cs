@@ -1,7 +1,10 @@
 ﻿using Application.Services;
 using Domain.Interfaces;
+using Infrastructure.Database;
 using Infrastructure.Repositories;
 using Microsoft.Data.Sqlite;
+
+DatabaseInitializer.Initialize();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<CriarContaService>();
+builder.Services.AddScoped<CriarContaCorrenteService>();
 builder.Services.AddScoped<IContaCorrenteRepository, ContaCorrenteRepository>();
 
 var app = builder.Build();

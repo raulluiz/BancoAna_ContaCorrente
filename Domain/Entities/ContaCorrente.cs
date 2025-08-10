@@ -1,8 +1,8 @@
 ﻿namespace BancoAna_ContaCorrente.Domain.Entities;
 
-public class ContaCorrente
+public class ContaCorrente(string nome, string senhaHash, string salt, int numero, string cpf)
 {
-    public string Id { get; set; } = Guid.NewGuid().ToString();
+    public string IdContaCorrente { get; set; } = Guid.NewGuid().ToString();
     public int Numero { get; set; }
     public string Nome { get; set; } = string.Empty;
     public string CPF { get; set; } = string.Empty;
