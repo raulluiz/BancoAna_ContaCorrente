@@ -17,6 +17,8 @@ O sistema é composto por 3 APIs:
 ---
 
 ## 📦 Estrutura do Projeto
+
+```bash
 /BancoAna_ContaCorrente -> API Conta Corrente
 /BancoAna_Transferencia -> API Transferência
 /Application -> Camada de aplicação
@@ -25,7 +27,7 @@ O sistema é composto por 3 APIs:
 /Data/Scripts -> Scripts SQL de criação das tabelas
 /docker-compose.yaml -> Orquestração dos serviços
 
-
+```
 ---
 
 ## 🚀 Pré-requisitos
